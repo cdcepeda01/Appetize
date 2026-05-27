@@ -13,11 +13,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
   },
   android: {
+    package: "com.cdcepeda01.appetize",
     adaptiveIcon: {
       backgroundColor: "#0B0B0B",
     },
   },
   plugins: ["expo-router"],
+  extra: {
+    eas: {
+      projectId: "b44bc898-42e5-4b26-afe2-ea9358b70171",
+    },
+  },
   experiments: {
     typedRoutes: true,
   },
