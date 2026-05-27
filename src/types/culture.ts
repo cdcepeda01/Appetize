@@ -1,5 +1,7 @@
 export type CultureType = "movie" | "book" | "music" | "art";
 
+export type ConsumptionStatus = "pending" | "inProgress" | "completed";
+
 export type CultureItem = {
   id: string;
   type: CultureType;
@@ -7,6 +9,7 @@ export type CultureItem = {
   subtitle?: string;
   description?: string;
   imageUrl?: string;
+  coverAsset?: string;
   source: string;
   year?: string;
   tags?: string[];
@@ -14,6 +17,11 @@ export type CultureItem = {
 
 export type LibraryItem = CultureItem & {
   createdAt?: unknown;
+};
+
+export type ConsumptionStatusRecord = {
+  status: ConsumptionStatus;
+  updatedAt: string;
 };
 
 export type CuratedContent = {

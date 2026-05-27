@@ -6,7 +6,7 @@ import { fonts } from "@/constants/typography";
 const tabs = {
   home: ["Inicio", "home-outline", "home"] as const,
   explore: ["Explorar", "compass-outline", "compass"] as const,
-  favorites: ["Favoritos", "heart-outline", "heart"] as const,
+  favorites: ["Notificaciones", "notifications-outline", "notifications"] as const,
   saved: ["Guardado", "bookmark-outline", "bookmark"] as const,
   profile: ["Perfil", "person-outline", "person"] as const,
 };

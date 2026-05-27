@@ -1,9 +1,10 @@
 export const fonts = {
-  title: "Inter_700Bold",
-  titleItalic: "Inter_500Medium",
-  body: "Inter_400Regular",
-  bodyMedium: "Inter_500Medium",
-  bodyBold: "Inter_700Bold",
+  title: "Manrope_800ExtraBold",
+  titleItalic: "Manrope_600SemiBold",
+  body: "Manrope_400Regular",
+  bodyMedium: "Manrope_500Medium",
+  bodyBold: "Manrope_700Bold",
+  button: "Manrope_600SemiBold",
 };
 
 export const typeScale = {

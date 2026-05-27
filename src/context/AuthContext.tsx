@@ -5,13 +5,14 @@ import { PropsWithChildren, createContext, useEffect, useMemo, useState } from "
 type DemoUser = {
   uid: string;
   email: string | null;
+  displayName?: string | null;
 };
 
 type AuthContextValue = {
   user: DemoUser | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -46,12 +47,16 @@ export function AuthProvider({ children }: PropsWithChildren) {
         await AsyncStorage.setItem(demoUserKey, JSON.stringify(demoUser));
         setUser(demoUser);
       },
-      register: async (email, password) => {
+      register: async (name, email, password) => {
+        if (name.trim().length < 2) {
+          throw new Error("Escribe tu nombre para personalizar Appetize.");
+        }
+
         if (password.trim().length < 4) {
           throw new Error("Usa una contraseña demo de al menos 4 caracteres.");
         }
 
-        const demoUser = createDemoUser(email);
+        const demoUser = createDemoUser(email, name);
         await AsyncStorage.setItem(demoUserKey, JSON.stringify(demoUser));
         setUser(demoUser);
       },
@@ -67,11 +72,13 @@ export function AuthProvider({ children }: PropsWithChildren) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-function createDemoUser(email: string): DemoUser {
+function createDemoUser(email: string, name?: string): DemoUser {
   const cleanEmail = email.trim().toLowerCase() || "demo@appetize.local";
+  const cleanName = name?.trim();
 
   return {
     uid: `demo-${cleanEmail}`,
     email: cleanEmail,
+    displayName: cleanName || cleanEmail.split("@")[0] || "Invitado",
   };
 }

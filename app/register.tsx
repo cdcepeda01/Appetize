@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 export default function RegisterScreen() {
   const { register } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,8 +19,8 @@ export default function RegisterScreen() {
   async function handleSubmit() {
     try {
       setLoading(true);
-      await register(email, password);
-      router.replace("/(tabs)/home");
+      await register(name, email, password);
+      router.replace("/");
     } catch (error) {
       Alert.alert("No pudimos registrarte", error instanceof Error ? error.message : "Intenta de nuevo.");
     } finally {
@@ -37,6 +38,7 @@ export default function RegisterScreen() {
       <View style={styles.form}>
         <Text style={styles.formTitle}>Crear cuenta demo</Text>
         <Text style={styles.formCopy}>Sin Firebase, sin llaves privadas: solo una experiencia local lista para probar.</Text>
+        <AppTextInput label="Nombre" value={name} onChangeText={setName} placeholder="Tu nombre" />
         <AppTextInput label="Correo" value={email} onChangeText={setEmail} keyboardType="email-address" placeholder="tu@email.com" />
         <AppTextInput label="Contraseña" value={password} onChangeText={setPassword} secureTextEntry placeholder="••••••••" />
         <AppButton

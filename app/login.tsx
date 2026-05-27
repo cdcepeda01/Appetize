@@ -19,9 +19,9 @@ export default function LoginScreen() {
     try {
       setLoading(true);
       await signIn(email, password);
-      router.replace("/(tabs)/home");
+      router.replace("/");
     } catch (error) {
-      Alert.alert("No pudimos iniciar sesion", error instanceof Error ? error.message : "Revisa tus datos.");
+      Alert.alert("No pudimos iniciar sesión", error instanceof Error ? error.message : "Revisa tus datos.");
     } finally {
       setLoading(false);
     }
@@ -35,12 +35,12 @@ export default function LoginScreen() {
         <Text style={styles.subtitle}>Feed your cultural appetite.</Text>
       </View>
       <View style={styles.form}>
-        <Text style={styles.formTitle}>Entrar al archivo</Text>
-        <Text style={styles.formCopy}>Una sesión demo local para guardar tu curaduría cultural.</Text>
+        <Text style={styles.formTitle}>Bienvenido</Text>
+        <Text style={styles.formCopy}>Inicia sesión para continuar</Text>
         <AppTextInput label="Correo" value={email} onChangeText={setEmail} keyboardType="email-address" placeholder="tu@email.com" />
         <AppTextInput label="Contraseña" value={password} onChangeText={setPassword} secureTextEntry placeholder="••••••••" />
         <AppButton
-          label={loading ? "Entrando..." : "Entrar en modo demo"}
+          label={loading ? "Entrando..." : "Entrar"}
           onPress={handleSubmit}
           disabled={loading}
         />
